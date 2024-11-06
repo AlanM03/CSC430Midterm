@@ -1,0 +1,57 @@
+-- User Table
+CREATE TABLE "User" (
+    userID SERIAL PRIMARY KEY,
+    username VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,  -- Password should be hashed securely
+    email VARCHAR(150) UNIQUE,
+    dateCreated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Category Table
+CREATE TABLE Category (
+    categoryID SERIAL PRIMARY KEY,
+    categoryName VARCHAR(50) UNIQUE NOT NULL
+);
+
+-- Item Table
+CREATE TABLE Item (
+    itemID SERIAL PRIMARY KEY,
+    itemName VARCHAR(100) NOT NULL,
+    categoryID INTEGER,
+    price DECIMAL(10, 2) NOT NULL,
+    stockQuantity INTEGER NOT NULL,
+    description TEXT,
+    FOREIGN KEY (categoryID) REFERENCES Category(categoryID) ON DELETE SET NULL
+);
+
+-- User_Cart_Item Table (Stores items added to the cart by a user)
+CREATE TABLE User_Cart_Item (
+    cartItemID SERIAL PRIMARY KEY,
+    userID INTEGER NOT NULL,
+    itemID INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userID) REFERENCES "User"(userID) ON DELETE CASCADE,
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE
+);
+
+-- Purchase Table (Stores information about completed purchases)
+CREATE TABLE Purchase (
+    purchaseID SERIAL PRIMARY KEY,
+    userID INTEGER NOT NULL,
+    purchaseDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    totalAmount DECIMAL(10, 2) NOT NULL,
+    paymentMethod VARCHAR(50) NOT NULL,  -- e.g., "Credit Card", "PayPal"
+    FOREIGN KEY (userID) REFERENCES "User"(userID) ON DELETE CASCADE
+);
+
+-- Purchase_Item Table (Stores details of items in a purchase)
+CREATE TABLE Purchase_Item (
+    purchaseItemID SERIAL PRIMARY KEY,
+    purchaseID INTEGER NOT NULL,
+    itemID INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    itemPrice DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (purchaseID) REFERENCES Purchase(purchaseID) ON DELETE CASCADE,
+    FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE SET NULL
+);

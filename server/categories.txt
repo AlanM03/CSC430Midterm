@@ -1,0 +1,34 @@
+[
+    {
+        "categoryid": 1,
+        "categoryname": "Furniture"
+    },
+    {
+        "categoryid": 2,
+        "categoryname": "Electronics"
+    },
+    {
+        "categoryid": 3,
+        "categoryname": "Sports"
+    },
+    {
+        "categoryid": 4,
+        "categoryname": "Clothing"
+    },
+    {
+        "categoryid": 5,
+        "categoryname": "Food"
+    },
+    {
+        "categoryid": 6,
+        "categoryname": "Books"
+    },
+    {
+        "categoryid": 7,
+        "categoryname": "Toys"
+    },
+    {
+        "categoryid": 8,
+        "categoryname": "Office Supplies"
+    }
+]
