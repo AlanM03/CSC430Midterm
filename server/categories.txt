@@ -1,34 +1,26 @@
 [
     {
-        "categoryid": 1,
-        "categoryname": "Furniture"
+        "categoryid": 9,
+        "categoryname": "Burgers"
     },
     {
-        "categoryid": 2,
-        "categoryname": "Electronics"
+        "categoryid": 10,
+        "categoryname": "Hot Dogs"
     },
     {
-        "categoryid": 3,
-        "categoryname": "Sports"
+        "categoryid": 11,
+        "categoryname": "Sandwiches"
     },
     {
-        "categoryid": 4,
-        "categoryname": "Clothing"
+        "categoryid": 12,
+        "categoryname": "Fries & Sides"
     },
     {
-        "categoryid": 5,
-        "categoryname": "Food"
+        "categoryid": 13,
+        "categoryname": "Drinks"
     },
     {
-        "categoryid": 6,
-        "categoryname": "Books"
-    },
-    {
-        "categoryid": 7,
-        "categoryname": "Toys"
-    },
-    {
-        "categoryid": 8,
-        "categoryname": "Office Supplies"
+        "categoryid": 14,
+        "categoryname": "Shakes"
     }
 ]
