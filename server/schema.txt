@@ -1,5 +1,5 @@
 -- User Table
-CREATE TABLE "User" (
+CREATE TABLE IF NOT EXISTS "User" (
     userID SERIAL PRIMARY KEY,
     username VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,  -- Password should be hashed securely
@@ -8,13 +8,13 @@ CREATE TABLE "User" (
 );
 
 -- Category Table
-CREATE TABLE Category (
+CREATE TABLE IF NOT EXISTS Category (
     categoryID SERIAL PRIMARY KEY,
     categoryName VARCHAR(50) UNIQUE NOT NULL
 );
 
 -- Item Table
-CREATE TABLE Item (
+CREATE TABLE IF NOT EXISTS Item (
     itemID SERIAL PRIMARY KEY,
     itemName VARCHAR(100) NOT NULL,
     categoryID INTEGER,
@@ -25,7 +25,7 @@ CREATE TABLE Item (
 );
 
 -- User_Cart_Item Table (Stores items added to the cart by a user)
-CREATE TABLE User_Cart_Item (
+CREATE TABLE IF NOT EXISTS User_Cart_Item (
     cartItemID SERIAL PRIMARY KEY,
     userID INTEGER NOT NULL,
     itemID INTEGER NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE User_Cart_Item (
 );
 
 -- Purchase Table (Stores information about completed purchases)
-CREATE TABLE Purchase (
+CREATE TABLE IF NOT EXISTS Purchase (
     purchaseID SERIAL PRIMARY KEY,
     userID INTEGER NOT NULL,
     purchaseDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -46,7 +46,7 @@ CREATE TABLE Purchase (
 );
 
 -- Purchase_Item Table (Stores details of items in a purchase)
-CREATE TABLE Purchase_Item (
+CREATE TABLE IF NOT EXISTS Purchase_Item (
     purchaseItemID SERIAL PRIMARY KEY,
     purchaseID INTEGER NOT NULL,
     itemID INTEGER NOT NULL,
