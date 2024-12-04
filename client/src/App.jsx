@@ -12,6 +12,8 @@ import Contact from './pages/Contact'; // Import the Contact Us page
 import PrivacyPolicy from './pages/PrivacyPolicy'; // Import the Privacy Policy page
 
 const App = () => {
+
+
   return (
     <Router>
       <div className="min-h-screen flex flex-col">

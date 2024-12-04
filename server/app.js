@@ -132,7 +132,7 @@ app.post('/login', async (req, res) => {
 
         // Generate a JWT token with the user's ID as the payload
         const token = jwt.sign(
-            { userId: user.userid },
+            { userId: user.userid, email: user.email, username: user.username },
             process.env.SECRET_KEY,
             { expiresIn: '1h' }  // expiration time
         );

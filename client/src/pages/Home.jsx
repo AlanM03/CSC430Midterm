@@ -3,7 +3,10 @@ import homeBanner from '../assets/homeBanner.jpg';
 import burgers from '../assets/burgers.jpg';
 import journey from '../assets/journey.webp';
 
+
 const Home = () => {
+
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
