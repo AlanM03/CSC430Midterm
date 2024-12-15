@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS Item (
     itemID SERIAL PRIMARY KEY,
     itemName VARCHAR(100) NOT NULL,
     categoryID INTEGER,
+    imageURL TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stockQuantity INTEGER NOT NULL,
     description TEXT,
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS User_Cart_Item (
     userID INTEGER NOT NULL,
     itemID INTEGER NOT NULL,
     quantity INTEGER NOT NULL,
+    request TEXT,
     dateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userID) REFERENCES "User"(userID) ON DELETE CASCADE,
     FOREIGN KEY (itemID) REFERENCES Item(itemID) ON DELETE CASCADE

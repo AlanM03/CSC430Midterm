@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Trash2, Plus, Minus } from 'lucide-react';
 import burgerItem from '../assets/burgerItem.png';
+import error from '../assets/error.png';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -174,22 +175,30 @@ const Cart = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
-            {cartItems.map((item) => (
-              <div
-                key={item.itemid}
-                className="flex items-center gap-4 border rounded-lg p-4"
-              >
-                <img
-                  src={burgerItem}
-                  alt={item.itemname}
-                  className="w-24 h-24 object-cover rounded"
-                />
-                <div className="flex-grow">
-                  <h3 className="text-lg font-bold">{item.itemname}</h3>
-                  <p className="text-gray-600 text-sm">
-                    {item.description || 'No description'}
-                  </p>
-                  <div className="flex items-center gap-4 mt-2">
+          {cartItems.map((item) => (
+                <div
+                  key={item.itemid}
+                  className="flex items-center gap-4 border rounded-lg p-4"
+                >
+                  <img
+                      src={item.imageurl ? `/images/${item.imageurl}` : burgerItem}
+                      alt={item.itemname}
+                      className="w-24 h-24 object-cover rounded"
+                    />
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-bold">{item.itemname}</h3>
+                    <p className="text-gray-600 text-sm">
+                      {item.description || 'No description'}
+                    </p>
+
+                    {/* Display Special Request if it exists */}
+                    {item.request && (
+                      <p className="text-gray-600 text-sm mt-1">
+                        <strong>Special Request:</strong> {item.request}
+                      </p>
+                    )}
+
+                    <div className="flex items-center gap-4 mt-2">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => decreaseQuantity(item)}

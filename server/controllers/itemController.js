@@ -4,47 +4,29 @@ const pool = require("../db");
 
 // Create a new item (or update stock if item exists)
 router.post("/postItem", async (req, res) => {
-  let { itemName, categoryID, price, stockQuantity, description } = req.body;
-
-  // Normalize input
-  itemName = itemName.trim().toLowerCase();
-  price = Number(parseFloat(price).toFixed(2));
-  stockQuantity = parseInt(stockQuantity);
-
-  try {
-    // Check if item already exists with the same name, price, category
-    const existingItemQuery = `
-      SELECT * FROM item 
-      WHERE itemname = $1 AND price = $2 AND categoryid = $3
-    `;
-    const existingItemResult = await pool.query(existingItemQuery, [itemName, price, categoryID]);
-
-    if (existingItemResult.rows.length > 0) {
-      // Item exists, update stock
-      const existingItem = existingItemResult.rows[0];
-      const updateQuery = `
-        UPDATE item 
-        SET stockquantity = stockquantity + $1 
-        WHERE itemid = $2 
-        RETURNING *
-      `;
-      const updatedItemResult = await pool.query(updateQuery, [stockQuantity, existingItem.itemid]);
-      res.status(200).json(updatedItemResult.rows[0]);
-    } else {
-      // Create a new item
+    let { itemName, categoryID, price, stockQuantity, description, imageURL } = req.body;
+  
+    // Trim and normalize itemName
+    itemName = itemName.trim().toLowerCase();
+    price = Number(parseFloat(price).toFixed(2));
+    stockQuantity = parseInt(stockQuantity);
+  
+    try {
+      // ...
+      // Insert or update logic here, also including the "imageURL" column.
       const insertQuery = `
-        INSERT INTO item (itemname, categoryid, price, stockquantity, description) 
-        VALUES ($1, $2, $3, $4, $5) 
+        INSERT INTO item (itemname, categoryid, price, stockquantity, description, imageurl) 
+        VALUES ($1, $2, $3, $4, $5, $6) 
         RETURNING *
       `;
-      const insertResult = await pool.query(insertQuery, [itemName, categoryID, price, stockQuantity, description]);
+      const insertResult = await pool.query(insertQuery, [itemName, categoryID, price, stockQuantity, description, imageURL]);
       res.status(201).json(insertResult.rows[0]);
+    } catch (err) {
+      console.error('Error in postItem:', err);
+      res.status(500).send("Server error");
     }
-  } catch (err) {
-    console.error("Error:", err);
-    res.status(500).send("Server error");
-  }
-});
+  });
+  
 
 // Get all items
 router.get("/getItems", async (req, res) => {
