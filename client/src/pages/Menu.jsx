@@ -21,7 +21,7 @@ const Menu = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:8080/getCategories');
+        const response = await fetch('http://localhost:8080/categories/getCategories');
         if (response.ok) {
           const data = await response.json();
           setCategories(data);
@@ -44,7 +44,7 @@ const Menu = () => {
     const fetchMenuItems = async () => {
       if (selectedCategory) {
         try {
-          const response = await fetch(`http://localhost:8080/getItemsByCategory/${selectedCategory}`);
+          const response = await fetch(`http://localhost:8080/items/getItemsByCategory/${selectedCategory}`);
           if (response.ok) {
             const data = await response.json();
             setMenuItems(data);
@@ -84,7 +84,7 @@ const Menu = () => {
     if (userToken) {
       const quantity = quantities[item.itemid];
       try {
-        const response = await fetch('http://localhost:8080/addToCart', {
+        const response = await fetch('http://localhost:8080/cart/addToCart', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -81,7 +81,7 @@ const Navbar = () => {
       };
 
       // Attempt to register the user
-      let registerResponse = await fetch('http://localhost:8080/register', {
+      let registerResponse = await fetch('http://localhost:8080/users/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody),
@@ -101,7 +101,7 @@ const Navbar = () => {
       }
 
       // Proceed to login the user
-      const loginResponse = await fetch('http://localhost:8080/login', {
+      const loginResponse = await fetch('http://localhost:8080/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email, password: password }),

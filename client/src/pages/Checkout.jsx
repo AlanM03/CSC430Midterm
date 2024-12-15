@@ -25,7 +25,7 @@ const Checkout = () => {
     const fetchCartItems = async () => {
       if (userToken) {
         try {
-          const response = await fetch('http://localhost:8080/getCartItems', {
+          const response = await fetch('http://localhost:8080/cart/getCartItems', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const Checkout = () => {
   const increaseQuantity = async (item) => {
     if (userToken) {
       try {
-        const response = await fetch('http://localhost:8080/addToCart', {
+        const response = await fetch('http://localhost:8080/cart/addToCart', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const Checkout = () => {
     if (userToken) {
       try {
         const response = await fetch(
-          `http://localhost:8080/deleteCartItem/${item.cartitemid}`,
+          `http://localhost:8080/cart/deleteCartItem/${item.cartitemid}`,
           {
             method: 'DELETE',
             headers: {
@@ -137,7 +137,7 @@ const Checkout = () => {
 
     if (userToken) {
       try {
-        const response = await fetch('http://localhost:8080/checkout', {
+        const response = await fetch('http://localhost:8080/purchases/checkout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
