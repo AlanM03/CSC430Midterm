@@ -77,7 +77,6 @@ router.get("/getCartItems", authenticateToken, async (req, res) => {
     const userID = req.user.userId;
   
     try {
-      // Include uci.request and i.imageurl in the SELECT
       const cartItems = await pool.query(
         `SELECT 
            uci.cartitemid, 

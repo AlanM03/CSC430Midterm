@@ -12,8 +12,6 @@ router.post("/postItem", async (req, res) => {
     stockQuantity = parseInt(stockQuantity);
   
     try {
-      // ...
-      // Insert or update logic here, also including the "imageURL" column.
       const insertQuery = `
         INSERT INTO item (itemname, categoryid, price, stockquantity, description, imageurl) 
         VALUES ($1, $2, $3, $4, $5, $6) 
