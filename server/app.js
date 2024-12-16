@@ -3,7 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
-const pool = require("./db");  // If you moved the Pool logic into db.js
+const pool = require("./db");  
 const userController = require("./controllers/userController");
 const categoryController = require("./controllers/categoryController");
 const itemController = require("./controllers/itemController");
